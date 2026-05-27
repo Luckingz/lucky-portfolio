@@ -1,0 +1,93 @@
+/* src/styles/frontend.css */
+/* ── FRONTEND MODE — vibrant, gradient, alive ───────────── */
+
+.hero-bg-fe {
+  background: radial-gradient(ellipse 80% 60% at 50% 0%, rgba(124,106,244,0.12) 0%, transparent 70%);
+}
+
+.fe-hw {
+  background: linear-gradient(135deg, var(--acc), var(--acc2), var(--acc3));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.mode-btn.fe.active {
+  background: linear-gradient(135deg, var(--acc), var(--acc2));
+  color: #fff;
+}
+
+/* Project cards */
+.card-fe {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 1.5rem;
+  transition: all 0.3s;
+  position: relative;
+  overflow: hidden;
+}
+.card-fe::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--acc), var(--acc2), var(--acc3));
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+.card-fe:hover {
+  transform: translateY(-6px);
+  border-color: var(--acc);
+  box-shadow: 0 20px 60px rgba(124,106,244,0.15);
+}
+.card-fe:hover::before { opacity: 1; }
+
+.card-title {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1.1rem;
+  color: var(--txt);
+  margin-bottom: 8px;
+}
+.card-role {
+  font-size: 12px;
+  color: var(--acc);
+  margin-bottom: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+.card-desc { font-size: 14px; color: var(--txt2); line-height: 1.6; margin-bottom: 1rem; }
+.tags-row { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 1rem; }
+.card-tag {
+  font-size: 11px;
+  padding: 3px 10px;
+  border-radius: 20px;
+  background: var(--bg3);
+  border: 1px solid var(--border);
+  color: var(--txt2);
+}
+.card-links { display: flex; gap: 8px; flex-wrap: wrap; }
+.card-link {
+  font-size: 12px;
+  padding: 6px 14px;
+  border-radius: 6px;
+  text-decoration: none;
+  font-weight: 500;
+  transition: all 0.2s;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+.link-primary { background: linear-gradient(135deg, var(--acc), var(--acc2)); color: #fff; }
+.link-primary:hover { opacity: 0.9; transform: translateY(-1px); }
+.link-outline { border: 1px solid var(--border); color: var(--txt2); background: transparent; }
+.link-outline:hover { border-color: var(--acc); color: var(--acc); }
+
+.year-badge {
+  position: absolute;
+  top: 1rem; right: 1rem;
+  font-size: 11px;
+  color: var(--txt3);
+  font-family: var(--font-mono);
+}

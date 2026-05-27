@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Lucky ME! — AI Engineer & Software Developer</title>
+<meta name="description" content="Lucky Ajidoku — AI Engineer & Software Developer. Award-winning builder of AI systems, biometric recognition, and energy solutions."/>
+<meta property="og:title" content="Lucky ME! — Lucky Ajidoku"/>
+<meta property="og:description" content="AI Engineer & Software Developer. National Best Project winner. Abuja, Nigeria."/>
+<meta property="og:url" content="https://luckyajidoku.dev"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Syne:wght@400;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="src/styles/globals.css"/>
+<link rel="stylesheet" href="src/styles/frontend.css"/>
+<link rel="stylesheet" href="src/styles/backend.css"/>
+<link rel="stylesheet" href="src/styles/fullstack.css"/>
+</head>
+<body>
+
+<nav id="navbar">
+  <div class="logo">Lucky<span>ME</span><span class="logo-bang">!</span></div>
+  <div class="nav-right">
+    <div class="mode-btns">
+      <button class="mode-btn fe active" onclick="setMode('frontend')">⬡ Frontend</button>
+      <button class="mode-btn be" onclick="setMode('backend')">$ Backend</button>
+      <button class="mode-btn fs" onclick="setMode('fullstack')">✦ Full-Stack</button>
+    </div>
+    <button class="theme-btn" id="themeBtn" onclick="toggleTheme()" aria-label="Toggle dark/light mode">🌙</button>
+  </div>
+</nav>
+
+<div id="main">
+  <section class="hero hero-bg-fe" id="hero">
+    <div class="terminal" id="terminal">
+      <div class="term-header">
+        <div class="dot dot-r"></div>
+        <div class="dot dot-y"></div>
+        <div class="dot dot-g"></div>
+        <div class="term-title">lucky@portfolio:~$</div>
+      </div>
+      <div class="term-body" id="termBody">
+        <div id="hw" class="line-hw fe-hw" style="opacity:0">Hello World 👋</div>
+        <div id="name" style="opacity:0;margin-top:6px" class="line-name">I'm <strong>Lucky ME!</strong></div>
+        <div id="welcome" style="opacity:0;margin-bottom:14px" class="line-welcome">Welcome to my portfolio.</div>
+        <div id="whoami-cmd" style="opacity:0" class="cmd-line">
+          <span class="prompt">❯</span>
+          <span class="cmd-text">whoami</span>
+        </div>
+        <div id="whoami-out" class="whoami-out" style="opacity:0;display:none"></div>
+        <div id="cursor-line" style="opacity:0" class="cmd-line">
+          <span class="prompt">❯</span>
+          <span class="cursor"></span>
+        </div>
+        <div id="ctas" class="cta-row" style="opacity:0;margin-top:20px">
+          <a href="https://luckyajidoku.cv/" target="_blank" class="cta cta-primary">↗ View CV</a>
+          <a href="https://github.com/Luckingz" target="_blank" class="cta cta-outline">⬡ GitHub</a>
+          <a href="https://www.linkedin.com/in/lucky-ajidoku/" target="_blank" class="cta cta-outline">in LinkedIn</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="section reveal" id="projectsSection">
+    <div class="section-header">
+      <div class="section-title" id="sectionTitle">Projects</div>
+      <div class="divider"></div>
+    </div>
+    <div class="projects-grid" id="projectsGrid"></div>
+  </div>
+
+  <footer>
+    <div class="footer-links">
+      <a href="https://github.com/Luckingz" target="_blank" class="footer-link">GitHub</a>
+      <a href="https://www.linkedin.com/in/lucky-ajidoku/" target="_blank" class="footer-link">LinkedIn</a>
+      <a href="https://luckyajidoku.cv/" target="_blank" class="footer-link">CV</a>
+    </div>
+    <div id="footerTxt">Built with React + TypeScript · Lucky ME! © 2025</div>
+  </footer>
+</div>
+
+<!-- Data layer — edit src/data/projects.ts to add/remove projects -->
+<script src="src/data/projects-data.js"></script>
+<!-- Core logic -->
+<script src="src/portfolio.js"></script>
+</body>
+</html>

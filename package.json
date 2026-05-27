@@ -1,0 +1,13 @@
+{
+  "name": "lucky-me-portfolio",
+  "version": "1.0.0",
+  "description": "Lucky ME! — AI Engineer & Software Developer Portfolio",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "devDependencies": {
+    "vite": "^5.0.0"
+  }
+}
