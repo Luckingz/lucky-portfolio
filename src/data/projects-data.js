@@ -116,7 +116,7 @@ window.PERSONAL = {
   github:   'https://github.com/Luckingz',
   linkedin: 'https://www.linkedin.com/in/lucky-ajidoku/',
   cv:       'https://luckyajidoku.cv/',
-  email:    'me@luckyajidoku.cv',
+  email:    'hello@luckyajidoku.cv',
   stacks: {
     languages: ['Python', 'TypeScript', 'Go', 'Dart', 'JavaScript', 'C'],
     aiml: ['TensorFlow', 'PyTorch', 'ArcFace', 'OpenCV', 'NLP', 'YOLO', 'scikit-learn'],
