@@ -1,142 +1,95 @@
-/* src/styles/fullstack.css */
-/* ── FULL-STACK MODE — chaos, flying, everything animated ── */
+/* ═══════════════════════════════════════════════════════
+   src/styles/fullstack.css
+   ══════════════════════════════════════════════════════ */
+@keyframes rbow { to { background-position: 200% center; } }
 
-.hero-bg-fs {
-  background: radial-gradient(ellipse 100% 80% at 50% 0%,
-    rgba(255,107,107,0.1) 0%,
-    rgba(78,205,196,0.1) 50%,
-    rgba(255,159,243,0.1) 100%);
-}
-
-.fs-hw {
-  animation: fs-txt 1s linear infinite;
-  font-size: 2.6rem;
-}
-@keyframes fs-txt {
-  0%   { filter: hue-rotate(0deg)   drop-shadow(0 0 8px rgba(255,100,100,0.6)); }
-  100% { filter: hue-rotate(360deg) drop-shadow(0 0 8px rgba(100,100,255,0.6)); }
-}
-
-.mode-btn.fs.active {
-  background: linear-gradient(135deg, #ff6b6b, #feca57, #48dbfb, #ff9ff3);
-  background-size: 300% 300%;
+.mbtn.fs.on {
+  background: linear-gradient(90deg,#ff6b6b,#ffd93d,#6bcb77,#4d96ff,#ff6b6b);
+  background-size: 200%;
   color: #000;
+  font-weight: 700;
   animation: rbow 2s linear infinite;
 }
-@keyframes rbow {
-  0%   { background-position: 0% 50%; }
-  50%  { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
+
+/* Hero text effects in FS mode */
+.fs-mode .hw-line  { animation: hshift 2s linear infinite; }
+@keyframes hshift  { 0%{filter:hue-rotate(0)} 100%{filter:hue-rotate(360deg)} }
+.fs-mode .name-line em {
+  background: linear-gradient(90deg,#ff6b6b,#ffd93d,#6bcb77,#4d96ff,#ff6b6b);
+  background-size: 200%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: rbow 2s linear infinite;
 }
-
-/* Terminal flying in fullstack mode */
-.fs-mode .terminal {
-  border-radius: 0;
-  animation: fs-card 4s ease-in-out infinite;
-  border-color: transparent;
-}
-@keyframes fs-card {
-  0%,100% { transform: none;                         box-shadow: 0 0 30px rgba(255,107,107,0.2), 0 40px 120px rgba(0,0,0,0.5); }
-  25%      { transform: rotate(-0.3deg) skew(-0.2deg); box-shadow: 0 0 30px rgba(78,205,196,0.3),  0 40px 80px rgba(0,0,0,0.5); }
-  50%      { transform: rotate(0.2deg);               box-shadow: 0 0 30px rgba(255,159,243,0.25), 0 40px 100px rgba(0,0,0,0.5); }
-  75%      { transform: rotate(-0.15deg) skew(0.1deg); }
-}
-
-.fs-mode .dot-r { animation: pulsedot 1s ease-in-out infinite alternate; }
-.fs-mode .dot-y { animation: pulsedot 1s ease-in-out 0.3s infinite alternate; }
-.fs-mode .dot-g { animation: pulsedot 1s ease-in-out 0.6s infinite alternate; }
-@keyframes pulsedot { to { transform: scale(1.4); filter: brightness(1.5); } }
-
-/* Full-stack project cards */
-.card-fs {
-  background: var(--card);
-  border: 1px solid var(--border);
-  border-radius: 12px;
-  overflow: hidden;
-  position: relative;
-  transition: transform 0.2s, box-shadow 0.2s;
-}
-
-.card-fs-header { padding: 1rem 1.25rem 0.75rem; border-bottom: 1px solid var(--border); }
-.card-fs-title { font-family: var(--font-display); font-weight: 700; color: var(--txt); font-size: 1rem; margin-bottom: 4px; }
-.card-fs-desc { font-size: 13px; color: var(--txt2); line-height: 1.5; margin-bottom: 8px; }
-
-.fs-tags-row { display: flex; flex-wrap: wrap; gap: 5px; margin-bottom: 8px; }
-.fs-tag {
-  font-size: 10px;
-  padding: 2px 8px;
-  border-radius: 20px;
-  border: 1px solid var(--border);
-  color: var(--txt3);
-}
-
-/* Video embed */
-.embed-wrap { position: relative; width: 100%; padding-top: 56.25%; background: #000; overflow: hidden; }
-.embed-wrap iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; }
-
-.embed-placeholder {
-  position: absolute;
-  top: 0; left: 0; width: 100%; height: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 12px;
-  background: var(--bg3);
-}
-.play-btn {
-  width: 56px; height: 56px;
-  border-radius: 50%;
-  background: linear-gradient(135deg, var(--acc), var(--acc2));
-  display: flex; align-items: center; justify-content: center;
-  cursor: pointer;
-  transition: transform 0.2s;
-  font-size: 20px;
-  color: #fff;
-  border: none;
-}
-.play-btn:hover { transform: scale(1.1); }
-.embed-label { font-size: 12px; color: var(--txt3); font-family: var(--font-mono); }
-
-.card-fs-footer { padding: 0.75rem 1.25rem; display: flex; gap: 8px; flex-wrap: wrap; }
-.fs-link {
-  font-size: 12px;
-  padding: 5px 12px;
-  border-radius: 6px;
-  text-decoration: none;
-  font-weight: 500;
-  transition: all 0.2s;
-  display: inline-flex;
-  align-items: center;
-  gap: 4px;
-}
-.fs-link-pri { background: linear-gradient(135deg, var(--acc), var(--acc2)); color: #fff; }
-.fs-link-out { border: 1px solid var(--border); color: var(--txt2); background: transparent; }
-.fs-link-out:hover { border-color: var(--acc); color: var(--acc); }
-
-/* ── FLYING ANIMATIONS ──────────────────────────────────── */
-.fs-mode .projects-grid .card-fs:nth-child(1) { animation: fly1 6s ease-in-out infinite; }
-.fs-mode .projects-grid .card-fs:nth-child(2) { animation: fly2 5s ease-in-out 1s infinite; }
-.fs-mode .projects-grid .card-fs:nth-child(3) { animation: fly3 7s ease-in-out 0.5s infinite; }
-.fs-mode .projects-grid .card-fs:nth-child(4) { animation: fly4 5.5s ease-in-out 2s infinite; }
-
-@keyframes fly1 { 0%,100%{transform:translateY(0)  rotate(0)}    30%{transform:translateY(-12px) rotate(-1deg)}  60%{transform:translateY(6px)   rotate(0.5deg)} }
-@keyframes fly2 { 0%,100%{transform:translateX(0)  rotate(0)}    25%{transform:translateX(8px)   rotate(0.8deg)} 70%{transform:translateX(-6px)  rotate(-0.6deg)} }
-@keyframes fly3 { 0%,100%{transform:translateY(0)  rotate(0)}    40%{transform:translateY(-8px)  rotate(1deg)}   75%{transform:translateY(4px)   rotate(-0.3deg)} }
-@keyframes fly4 { 0%,100%{transform:translateY(0) translateX(0)} 35%{transform:translateY(-10px) translateX(6px)} 65%{transform:translateY(5px) translateX(-4px)} }
-
-/* Colour-cycling borders */
-.fs-mode .card-fs:nth-child(1) { border-color: rgba(255,107,107,0.5); }
-.fs-mode .card-fs:nth-child(2) { border-color: rgba(78,205,196,0.5); }
-.fs-mode .card-fs:nth-child(3) { border-color: rgba(255,159,243,0.5); }
-.fs-mode .card-fs:nth-child(4) { border-color: rgba(254,202,87,0.5); }
-
-/* Section header bling */
-.fs-mode .section-title {
-  background: linear-gradient(135deg, #ff6b6b, #feca57, #48dbfb, #ff9ff3);
+.fs-mode .sec-lbl {
+  background: linear-gradient(90deg,#ff6b6b,#ffd93d,#6bcb77,#4d96ff,#ff6b6b);
+  background-size: 200%;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
   animation: rbow 3s linear infinite;
-  background-size: 300% 300%;
 }
+
+.fs-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+  gap: 1.2rem;
+}
+.fsc {
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Flying + colour borders by child order */
+.fsc:nth-child(1){border-color:rgba(200,240,60,.35); animation:fly1 7s ease-in-out infinite}
+.fsc:nth-child(2){border-color:rgba(124,106,244,.35);animation:fly2 5.5s ease-in-out 1s infinite}
+.fsc:nth-child(3){border-color:rgba(78,205,196,.35); animation:fly3 6s ease-in-out .5s infinite}
+.fsc:nth-child(4){border-color:rgba(255,107,107,.35);animation:fly4 8s ease-in-out 2s infinite}
+.fsc:nth-child(5){border-color:rgba(255,211,61,.35); animation:fly1 6s ease-in-out 1.5s infinite}
+.fsc:nth-child(6){border-color:rgba(107,203,119,.35);animation:fly2 7.5s ease-in-out .8s infinite}
+.fsc:nth-child(7){border-color:rgba(255,159,243,.35);animation:fly3 5s ease-in-out 2.5s infinite}
+
+@keyframes fly1{0%,100%{transform:translateY(0) rotate(0)}35%{transform:translateY(-10px) rotate(-.8deg)}70%{transform:translateY(5px) rotate(.4deg)}}
+@keyframes fly2{0%,100%{transform:translateX(0) rotate(0)}30%{transform:translateX(8px) rotate(.6deg)}65%{transform:translateX(-5px) rotate(-.4deg)}}
+@keyframes fly3{0%,100%{transform:translate(0,0)}40%{transform:translate(5px,-8px)}75%{transform:translate(-3px,4px)}}
+@keyframes fly4{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
+
+/* Disable flying on mobile */
+@media (max-width: 768px) { .fsc { animation: none !important; } .fs-grid { grid-template-columns: 1fr; } }
+
+.fsc-hd    { padding: 1rem 1.2rem; border-bottom: 1px solid var(--border); }
+.fsc-title { font-family: var(--font-d); font-size: 1.3rem; color: var(--txt); letter-spacing: .03em; }
+.fsc-role  { font-size: 11px; font-family: var(--font-m); color: var(--txt2); margin-top: 2px; }
+.fsc-desc  { font-size: 12px; color: var(--txt2); line-height: 1.6; margin-top: 6px; }
+.fsc-tags  { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 8px; }
+.fsc-tag   { font-size: 9px; font-family: var(--font-m); padding: 2px 6px; border-radius: 10px; border: 1px solid var(--border); color: var(--txt3); }
+
+.ez { background: #000; position: relative; padding-top: 56.25%; }
+.ez iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: none; }
+.ez-ph {
+  position: absolute; inset: 0;
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px;
+  background: var(--bg3); cursor: pointer; transition: background .2s;
+}
+.ez-ph:hover { background: var(--bg2); }
+.play-c {
+  width: 52px; height: 52px; border-radius: 50%;
+  background: var(--acc); display: flex; align-items: center; justify-content: center;
+  font-size: 18px; color: #000; border: none; cursor: pointer; transition: transform .2s;
+}
+.play-c:hover { transform: scale(1.1); }
+.ez-lbl  { font-family: var(--font-m); font-size: 10px; color: var(--txt3); }
+.fsc-ft  { padding: .7rem 1.2rem; display: flex; gap: 7px; flex-wrap: wrap; }
+.fsl {
+  font-family: var(--font-m); font-size: 10px; padding: 5px 12px; border-radius: 5px;
+  transition: all .2s; border: 1px solid var(--border); color: var(--txt2);
+  text-decoration: none; display: inline-block; cursor: pointer;
+}
+.fsl.p { background: var(--acc); border-color: var(--acc); color: #000; font-weight: 700; }
+.fsl.p:hover { opacity: .88; }
+.fsl:hover:not(.p) { border-color: var(--acc); color: var(--acc); }

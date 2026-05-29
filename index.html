@@ -2,86 +2,260 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8"/>
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
 <title>Lucky ME! — AI Engineer & Software Developer</title>
-<meta name="description" content="Lucky Ajidoku — AI Engineer & Software Developer. Award-winning builder of AI systems, biometric recognition, and energy solutions."/>
+<meta name="description" content="Lucky Ajidoku — AI Engineer & Software Developer. Award-winning builder of AI systems, biometric recognition, and energy solutions. Abuja, Nigeria."/>
 <meta property="og:title" content="Lucky ME! — Lucky Ajidoku"/>
 <meta property="og:description" content="AI Engineer & Software Developer. National Best Project winner. Abuja, Nigeria."/>
-<meta property="og:url" content="https://luckyajidoku.dev"/>
+<meta name="theme-color" content="#06060a"/>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-<link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Syne:wght@400;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=IBM+Plex+Mono:wght@400;500;700&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet"/>
 <link rel="stylesheet" href="src/styles/globals.css"/>
+<link rel="stylesheet" href="src/styles/terminal.css"/>
 <link rel="stylesheet" href="src/styles/frontend.css"/>
 <link rel="stylesheet" href="src/styles/backend.css"/>
 <link rel="stylesheet" href="src/styles/fullstack.css"/>
+<link rel="stylesheet" href="src/styles/chat.css"/>
 </head>
 <body>
 
-<nav id="navbar">
-  <div class="logo">Lucky<span>ME</span><span class="logo-bang">!</span></div>
-  <div class="nav-right">
-    <div class="mode-btns">
-      <button class="mode-btn fe active" onclick="setMode('frontend')">⬡ Frontend</button>
-      <button class="mode-btn be" onclick="setMode('backend')">$ Backend</button>
-      <button class="mode-btn fs" onclick="setMode('fullstack')">✦ Full-Stack</button>
+<!-- ═══════════════════════════════════════
+     CHAT WITH LUCKY — terminal email modal
+     Positioned outside nav so z-index works
+════════════════════════════════════════ -->
+<div class="chat-overlay" id="chatOverlay">
+  <div class="chat-modal">
+    <div class="cm-hdr">
+      <div class="dot dr"></div>
+      <div class="dot dy"></div>
+      <div class="dot dg"></div>
+      <div class="cm-title">lucky@mail:~$ contact</div>
+      <button class="cm-close" onclick="closeChat()" aria-label="Close">&times;</button>
     </div>
-    <button class="theme-btn" id="themeBtn" onclick="toggleTheme()" aria-label="Toggle dark/light mode">🌙</button>
+    <div class="cm-body" id="cmBody"></div>
+    <div class="cm-input-row">
+      <span class="cm-ps">&#10095;</span>
+      <input
+        class="cm-input"
+        id="cmInput"
+        autocomplete="off"
+        placeholder="type your answer and press Enter..."
+        onkeydown="if(event.key==='Enter')cmNext()"
+      />
+      <button class="cm-enter" onclick="cmNext()">ENTER</button>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════
+     NAVIGATION
+════════════════════════════════════════ -->
+<nav id="nav">
+  <div class="logo">Lucky<em>ME</em>!</div>
+
+  <div class="nav-center">
+    <button class="mbtn fe on" onclick="setMode('fe')">Frontend</button>
+    <button class="mbtn be" onclick="setMode('be')">Backend</button>
+    <button class="mbtn fs" onclick="setMode('fs')">Full-Stack</button>
+  </div>
+
+  <div class="nav-right">
+    <button class="chat-btn" onclick="openChat()">&#9654; Chat with Lucky</button>
+    <div class="theme-btn" onclick="toggleTheme()" id="themeBtn">
+      <span id="tIcon">&#127769;</span>
+      <span id="tLbl">Night Walker</span>
+    </div>
   </div>
 </nav>
 
-<div id="main">
-  <section class="hero hero-bg-fe" id="hero">
-    <div class="terminal" id="terminal">
-      <div class="term-header">
-        <div class="dot dot-r"></div>
-        <div class="dot dot-y"></div>
-        <div class="dot dot-g"></div>
-        <div class="term-title">lucky@portfolio:~$</div>
-      </div>
-      <div class="term-body" id="termBody">
-        <div id="hw" class="line-hw fe-hw" style="opacity:0">Hello World 👋</div>
-        <div id="name" style="opacity:0;margin-top:6px" class="line-name">I'm <strong>Lucky ME!</strong></div>
-        <div id="welcome" style="opacity:0;margin-bottom:14px" class="line-welcome">Welcome to my portfolio.</div>
-        <div id="whoami-cmd" style="opacity:0" class="cmd-line">
-          <span class="prompt">❯</span>
-          <span class="cmd-text">whoami</span>
-        </div>
-        <div id="whoami-out" class="whoami-out" style="opacity:0;display:none"></div>
-        <div id="cursor-line" style="opacity:0" class="cmd-line">
-          <span class="prompt">❯</span>
-          <span class="cursor"></span>
-        </div>
-        <div id="ctas" class="cta-row" style="opacity:0;margin-top:20px">
-          <a href="https://luckyajidoku.cv/" target="_blank" class="cta cta-primary">↗ View CV</a>
-          <a href="https://github.com/Luckingz" target="_blank" class="cta cta-outline">⬡ GitHub</a>
-          <a href="https://www.linkedin.com/in/lucky-ajidoku/" target="_blank" class="cta cta-outline">in LinkedIn</a>
-        </div>
-      </div>
-    </div>
-  </section>
+<!-- ═══════════════════════════════════════
+     HERO
+════════════════════════════════════════ -->
+<section class="hero" id="hero">
+  <!-- Matrix rain canvas — visible only in Full-Stack mode -->
+  <canvas id="matrixCanvas" aria-hidden="true"></canvas>
 
-  <div class="section reveal" id="projectsSection">
-    <div class="section-header">
-      <div class="section-title" id="sectionTitle">Projects</div>
-      <div class="divider"></div>
+  <div class="hero-inner">
+    <!-- Big display type — typed on load -->
+    <div class="hw-line" id="hw" style="opacity:0">
+      <span id="hwTxt"></span><span class="hw-bang">!</span>
     </div>
-    <div class="projects-grid" id="projectsGrid"></div>
+    <div class="name-line" id="nm" style="opacity:0">
+      I'm <em><span id="nmTxt"></span></em>
+    </div>
+    <p class="hero-sub" id="hs" style="opacity:0">
+      AI Engineer &nbsp;&middot;&nbsp; Software Developer &nbsp;&middot;&nbsp; Abuja, Nigeria
+    </p>
+
+    <!-- Two-panel grid -->
+    <div class="hero-grid" id="heroGrid" style="opacity:0">
+
+      <!-- LEFT: whoami — lines typed in as user scrolls -->
+      <div class="term-box" role="region" aria-label="About Lucky">
+        <div class="term-hdr">
+          <div class="dot dr"></div>
+          <div class="dot dy"></div>
+          <div class="dot dg"></div>
+          <div class="term-title">root:~$ whoami</div>
+        </div>
+        <div class="term-body" id="whoamiBody"></div>
+      </div>
+
+      <!-- RIGHT: Live AI terminal -->
+      <div class="ai-term" role="region" aria-label="Ask Lucky's AI assistant">
+        <div class="at-hdr">
+          <div class="at-badge">AI</div>
+          <div class="at-title">Ask me anything about Lucky</div>
+        </div>
+        <div class="at-out" id="atOut">
+          <div class="at-intro">// Powered by Groq · Knows everything about Lucky</div>
+          <div class="at-hint">Try asking:</div>
+          <div class="at-sugs" id="atSugs">
+            <span class="at-sug" onclick="askTerm(this.textContent)">What projects use Python?</span>
+            <span class="at-sug" onclick="askTerm(this.textContent)">Tell me about EnergizeAI</span>
+            <span class="at-sug" onclick="askTerm(this.textContent)">What awards has Lucky won?</span>
+            <span class="at-sug" onclick="askTerm(this.textContent)">Which project uses blockchain?</span>
+            <span class="at-sug" onclick="askTerm(this.textContent)">What is GPMP?</span>
+            <span class="at-sug" onclick="askTerm(this.textContent)">Which projects use computer vision?</span>
+          </div>
+        </div>
+        <div class="at-row">
+          <span class="at-ps">&#10095;</span>
+          <input
+            class="at-in"
+            id="atIn"
+            placeholder="ask about Lucky's projects, skills, experience..."
+            autocomplete="off"
+            onkeydown="if(event.key==='Enter')sendAI()"
+          />
+          <button class="at-send" onclick="sendAI()">SEND</button>
+        </div>
+      </div>
+
+    </div><!-- /hero-grid -->
+  </div><!-- /hero-inner -->
+</section>
+
+<!-- ═══════════════════════════════════════
+     PROJECTS
+════════════════════════════════════════ -->
+<div class="section fade-up" id="projSec">
+  <div class="sec-lbl">Past <em>Projects</em></div>
+
+  <!-- FRONTEND — asymmetric 12-col grid, static HTML for SEO -->
+  <div class="mode-c on" id="feContent">
+    <div class="fe-grid">
+
+      <div class="fc c1">
+        <div class="fc-role"><span class="fdot"></span>Full-Stack AI Engineer</div>
+        <div class="fc-title">StudyinNaija Assessments</div>
+        <div class="fc-desc">AI-powered assessment platform for students targeting Nigerian universities. Generates personalised test questions and surfaces real-time study recommendations via NLP.</div>
+        <div class="fc-tags"><span class="fc-tag">AI</span><span class="fc-tag">NLP</span><span class="fc-tag">JavaScript</span><span class="fc-tag">Python</span></div>
+        <div class="fc-links">
+          <a href="https://www.studyinnaija.com/p/ai-powered-assessments.html" target="_blank" class="fc-lnk p">Live Demo</a>
+          <a href="https://github.com/Luckingz/studyinnaija-assessments" target="_blank" class="fc-lnk">Repo</a>
+        </div>
+      </div>
+
+      <div class="fc c2">
+        <div class="fc-role">Full-Stack Developer</div>
+        <div class="fc-title">ShoutOUT</div>
+        <div class="fc-desc">Real-time social shoutout app — broadcast appreciation messages across a live feed. WebSocket-powered hype machine.</div>
+        <div class="fc-tags"><span class="fc-tag">React</span><span class="fc-tag">WebSockets</span><span class="fc-tag">Node.js</span><span class="fc-tag">TypeScript</span></div>
+        <div class="fc-links">
+          <a href="https://drive.google.com/file/d/11ml1Adk82T6Mfhft71qBAcXkR-RQvVhy/view" target="_blank" class="fc-lnk p">Watch Demo</a>
+          <a href="https://github.com/Luckingz/shoutOUT" target="_blank" class="fc-lnk">Repo</a>
+        </div>
+      </div>
+
+      <div class="fc c3">
+        <div class="fc-role"><span class="fdot"></span>AI Engineer</div>
+        <div class="fc-title">YoTouch</div>
+        <div class="fc-desc">Blockchain identity via ArcFace biometrics and liveness detection. Off-chain storage on Cardano, NDPR compliant.</div>
+        <div class="fc-tags"><span class="fc-tag">Python</span><span class="fc-tag">ArcFace</span><span class="fc-tag">Cardano</span><span class="fc-tag">OpenCV</span></div>
+        <div class="fc-links">
+          <a href="https://drive.google.com/file/d/1TKfnWxra9Zv66PtesuVLK8JP9LtVcjm7/view" target="_blank" class="fc-lnk p">Watch Demo</a>
+          <a href="https://github.com/Luckingz/yotouch" target="_blank" class="fc-lnk">Repo</a>
+        </div>
+      </div>
+
+      <div class="fc c4">
+        <div class="fc-role"><span class="fdot"></span>Lead AI Engineer</div>
+        <div class="fc-title">EnergizeAI</div>
+        <div class="fc-desc">National Best Project winner. AI tool automating solar PV blueprint design for engineers. Won 3MTT June Knowledge Showcase 2025.</div>
+        <div class="fc-tags"><span class="fc-tag">Flutter</span><span class="fc-tag">Dart</span><span class="fc-tag">FastAPI</span><span class="fc-tag">Python</span></div>
+        <div class="fc-links">
+          <a href="https://github.com/Luckingz/energize-ai" target="_blank" class="fc-lnk p">Repo</a>
+          <a href="https://www.linkedin.com/posts/lucky-ajidoku_energizeai-energizeai-3mttlearningcommunity-activity-7336376892599459840-Yi3a" target="_blank" class="fc-lnk">Award Post</a>
+        </div>
+      </div>
+
+      <div class="fc c5">
+        <div class="fc-role">AI/ML Engineer</div>
+        <div class="fc-title">GPMP</div>
+        <div class="fc-desc">Gas Prediction & Maintenance Prediction — ML model for predictive maintenance in industrial gas systems. Live on Streamlit.</div>
+        <div class="fc-tags"><span class="fc-tag">Python</span><span class="fc-tag">ML</span><span class="fc-tag">Streamlit</span><span class="fc-tag">scikit-learn</span></div>
+        <div class="fc-links">
+          <a href="https://gas-prediction-maintenance-3peuwgeird5tyhv5rpswej.streamlit.app/" target="_blank" class="fc-lnk p">Live</a>
+          <a href="https://github.com/Luckingz/gas-prediction-maintenance" target="_blank" class="fc-lnk">Repo</a>
+        </div>
+      </div>
+
+      <div class="fc c6">
+        <div class="fc-role">Hackathon &middot; Full-Stack</div>
+        <div class="fc-title">ComplyNG</div>
+        <div class="fc-desc">Regulatory compliance platform for Nigerian SMEs — automated checks and reporting dashboard helping businesses navigate Nigerian regulations. Built at a hackathon.</div>
+        <div class="fc-tags"><span class="fc-tag">Figma</span><span class="fc-tag">React</span><span class="fc-tag">RegTech</span><span class="fc-tag">Nigeria</span></div>
+        <div class="fc-links">
+          <a href="https://chute-stack-74315615.figma.site/" target="_blank" class="fc-lnk p">Live</a>
+          <a href="https://github.com/olayinkaojo/hackaton" target="_blank" class="fc-lnk">Repo</a>
+        </div>
+      </div>
+
+      <div class="fc c7">
+        <div class="fc-role">Computer Vision Engineer</div>
+        <div class="fc-title">TrafficMonitor</div>
+        <div class="fc-desc">Real-time traffic monitoring with vehicle detection, tracking, and classification using YOLO and OpenCV. Configurable ROI zones for any road configuration.</div>
+        <div class="fc-tags"><span class="fc-tag">Python</span><span class="fc-tag">OpenCV</span><span class="fc-tag">YOLO</span><span class="fc-tag">Computer Vision</span></div>
+        <div class="fc-links">
+          <a href="https://colab.research.google.com/drive/1ggW_GF5JR53lFpia0E7I5RUKYnGTotB0?usp=sharing" target="_blank" class="fc-lnk p">Open Colab</a>
+          <a href="https://github.com/Luckingz/traffic-monitoring-system" target="_blank" class="fc-lnk">Repo</a>
+        </div>
+      </div>
+
+    </div>
   </div>
 
-  <footer>
-    <div class="footer-links">
-      <a href="https://github.com/Luckingz" target="_blank" class="footer-link">GitHub</a>
-      <a href="https://www.linkedin.com/in/lucky-ajidoku/" target="_blank" class="footer-link">LinkedIn</a>
-      <a href="https://luckyajidoku.cv/" target="_blank" class="footer-link">CV</a>
-    </div>
-    <div id="footerTxt">Built with React + TypeScript · Lucky ME! © 2025</div>
-  </footer>
+  <!-- BACKEND — rendered by JS -->
+  <div class="mode-c" id="beContent">
+    <div class="be-grid" id="beGrid"></div>
+  </div>
+
+  <!-- FULLSTACK — rendered by JS -->
+  <div class="mode-c" id="fsContent">
+    <div class="fs-grid" id="fsGrid"></div>
+  </div>
 </div>
 
-<!-- Data layer — edit src/data/projects.ts to add/remove projects -->
+<footer>
+  <div class="foot-links">
+    <a href="https://github.com/Luckingz" target="_blank" class="foot-lnk">GitHub</a>
+    <a href="https://www.linkedin.com/in/lucky-ajidoku/" target="_blank" class="foot-lnk">LinkedIn</a>
+    <a href="https://luckyajidoku.cv/" target="_blank" class="foot-lnk">CV</a>
+  </div>
+  <div id="ftxt" class="foot-copy">Lucky ME! &copy; 2025</div>
+</footer>
+
+<!-- Data — edit this file to add projects -->
 <script type="module" src="src/data/projects-data.js"></script>
-<!-- Core logic -->
+<!-- Feature modules -->
+<script type="module" src="src/components/matrix.js"></script>
+<script type="module" src="src/components/whoami.js"></script>
+<script type="module" src="src/components/ai-terminal.js"></script>
+<script type="module" src="src/components/chat.js"></script>
+<!-- Core logic last -->
 <script type="module" src="src/portfolio.js"></script>
+
 </body>
 </html>

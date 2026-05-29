@@ -1,0 +1,109 @@
+/* ═══════════════════════════════════════════════════════
+   src/styles/chat.css — "Chat with Lucky" terminal modal
+   ══════════════════════════════════════════════════════ */
+
+.chat-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,.75);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .3s;
+  padding: 1rem;
+}
+.chat-overlay.open { opacity: 1; pointer-events: all; }
+
+.chat-modal {
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  width: 520px;
+  max-width: 100%;
+  overflow: hidden;
+  font-family: var(--font-m);
+  display: flex;
+  flex-direction: column;
+}
+
+.cm-hdr {
+  background: var(--bg3);
+  padding: 10px 16px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border-bottom: 1px solid var(--border);
+}
+.cm-title {
+  font-size: 10px;
+  color: var(--acc);
+  letter-spacing: .06em;
+  margin-left: 4px;
+  flex: 1;
+}
+.cm-close {
+  background: none;
+  border: none;
+  color: var(--txt2);
+  font-size: 18px;
+  line-height: 1;
+  padding: 0 2px;
+  cursor: pointer;
+  transition: color .15s;
+}
+.cm-close:hover { color: var(--txt); }
+
+.cm-body {
+  padding: 16px 18px;
+  min-height: 280px;
+  max-height: 380px;
+  overflow-y: auto;
+  font-size: 12px;
+  line-height: 1.9;
+  flex: 1;
+  scrollbar-width: thin;
+  scrollbar-color: var(--border) transparent;
+}
+.cm-body::-webkit-scrollbar { width: 4px; }
+.cm-body::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
+
+/* Individual chat lines */
+.cm-line { color: var(--txt); margin-bottom: 3px; word-break: break-word; }
+.cm-ps   { color: var(--acc2); margin-right: 5px; }
+/* Colour variants applied inline via JS */
+
+.cm-input-row {
+  border-top: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  padding: 8px 12px;
+  gap: 8px;
+}
+.cm-prompt-sym { color: var(--acc); font-size: 12px; flex-shrink: 0; }
+.cm-input {
+  flex: 1;
+  background: transparent;
+  border: none;
+  outline: none;
+  font-family: var(--font-m);
+  font-size: 12px;
+  color: var(--txt);
+}
+.cm-input::placeholder { color: var(--txt3); }
+
+.cm-enter {
+  background: var(--acc);
+  border: none;
+  color: #000;
+  font-family: var(--font-m);
+  font-size: 10px;
+  font-weight: 700;
+  padding: 5px 13px;
+  border-radius: 4px;
+  letter-spacing: .04em;
+  transition: opacity .15s;
+}
+.cm-enter:hover { opacity: .85; }
