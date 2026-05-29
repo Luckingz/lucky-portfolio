@@ -15,9 +15,6 @@ const WHOAMI_LINES = [
   { t: 'chips', items: ['TensorFlow','PyTorch','ArcFace','OpenCV','NLP','YOLO'], cls: 'ai' },
   { t: 'chips', items: ['React','Node.js','FastAPI','Flutter','PostgreSQL','Docker','Cardano','Streamlit'] },
   { t: 'award' },
-  { t: 'kv',    k: 'github',   v: 'github.com/Luckingz' },
-  { t: 'kv',    k: 'linkedin', v: 'in/lucky-ajidoku' },
-  { t: 'kv',    k: 'cv',       v: 'luckyajidoku.cv' },
   { t: 'ctas' },
 ];
 
@@ -86,6 +83,7 @@ function _renderLine(line) {
       r.className = 'wb-ctas';
       r.innerHTML = `
         <a href="https://luckyajidoku.cv/" target="_blank" class="wb-cta p">CV</a>
+        <a href="mailto:hello@luckyajidoku.cv" target="_blank" class="wb-cta">Email</a>
         <a href="https://github.com/Luckingz" target="_blank" class="wb-cta">GitHub</a>
         <a href="https://www.linkedin.com/in/lucky-ajidoku/" target="_blank" class="wb-cta">LinkedIn</a>
       `;
