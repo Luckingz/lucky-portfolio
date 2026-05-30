@@ -72,7 +72,7 @@ function _renderLine(line, cb) {
       row.appendChild(kEl); row.appendChild(sEl); row.appendChild(vEl); row.appendChild(cu);
       body.appendChild(row);
       _typer(kEl, line.k, 45, () => {
-        sEl.textContent = ': ';           // colon separator — no long hyphens
+        sEl.textContent = ': ';           // colon separator
         _typer(vEl, line.v, 25, () => {
           cu.remove(); body.scrollTop = body.scrollHeight; cb && cb();
         });
@@ -121,6 +121,7 @@ function _renderLine(line, cb) {
       ctas.className = 'wb-ctas';
       ctas.innerHTML = `
         <a href="https://luckyajidoku.cv/" target="_blank" class="wb-cta p">CV</a>
+        <a href="mailto:hello@luckyajidoku.cv" target="_blank" class="wb-cta">E-Mail</a>
         <a href="https://github.com/Luckingz" target="_blank" class="wb-cta">GitHub</a>
         <a href="https://www.linkedin.com/in/lucky-ajidoku/" target="_blank" class="wb-cta">LinkedIn</a>
       `;
@@ -145,14 +146,26 @@ function advanceWhoami() {
 }
 
 function initWhoami() {
-  // Seed first 3 lines on load (cmd + name + alias)
+  // 1. Set the busy flag to true so the scroll/observer listeners wait
+  _wBusy = true; 
+
   function seed(i) {
-    if (i >= 3) return;
-    _renderLine(WHOAMI_LINES[i], () => { _wIdx = i + 1; seed(i + 1); });
+    if (i >= 3) {
+      // 3. Seeding is finished! Turn busy off so user can scroll to load the rest
+      _wBusy = false; 
+      return;
+    }
+    // We bypass _wBusy checking inside our manual seeding step
+    _renderLine(WHOAMI_LINES[i], () => { 
+      _wIdx = i + 1; 
+      seed(i + 1); 
+    });
   }
+  
+  // 2. Start seeding line 0, 1, and 2 safely
   seed(0);
 
-  // Remaining lines reveal on scroll
+  // Remaining lines reveal safely on scroll/intersection only after seeding completes
   window.addEventListener('scroll', () => { if (!_wDone) advanceWhoami(); }, { passive: true });
 
   const body = document.getElementById('whoamiBody');

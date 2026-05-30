@@ -5,13 +5,13 @@
 
 const PREFILLED = {
   python:
-`Python is Lucky's most-used language. Five projects run on it:
+`Python is Lucky's most-used language. Here are some projects that run on it:
 
-  1. YoTouch        — ArcFace + OpenCV biometric engine
-  2. EnergizeAI     — FastAPI backend for the solar PV AI tool
-  3. GPMP           — scikit-learn ML pipeline for gas maintenance
+  1. EnergizeAI     — FastAPI backend for the solar PV AI tool
+  2. GPMP           — scikit-learn ML pipeline for gas maintenance
+  3. YoTouch        — ArcFace + OpenCV biometric engine
   4. StudyinNaija   — NLP question generation engine
-  5. TrafficMonitor — YOLO + OpenCV vehicle detection
+  6. TrafficMonitor — YOLO + OpenCV vehicle detection
 
 Python handles all heavy AI/ML workloads across the stack.`,
 
@@ -36,11 +36,18 @@ Showcase 2025, competing against projects from across Nigeria.`,
   3MTT June Knowledge Showcase 2025
   Project: EnergizeAI
 
+  Presenter at African Gas Innovative Summit, 2025
+  Project: GPMP
+
 Certifications:
   - AI & Machine Learning — 3MTT / NITDA
-  - Project Management   — SDC Canada
+  - Project Management   — Skill Development Council, Canada
   - Train-The-Trainer    — DSN x Microsoft
-  - AI for Energy Hackathon — DSN x NNPC`,
+  - AI for Energy Hackathon — DSN x NNPC
+ 
+ Professional Membership:
+  - Graduate Member, Nigerian Society of Engineers (GMNSE) `,
+
 
   blockchain:
 `That would be YoTouch.
