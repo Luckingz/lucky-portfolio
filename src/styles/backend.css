@@ -1,6 +1,4 @@
-/* ═══════════════════════════════════════════════════════
-   src/styles/backend.css
-   ══════════════════════════════════════════════════════ */
+/* src/styles/backend.css */
 .mbtn.be.on { background: #111; color: #fff; font-family: var(--font-m); font-weight: 700; }
 [data-theme="light"] .mbtn.be.on { background: #111; }
 
@@ -13,21 +11,10 @@
 [data-theme="light"] .be-mode .hero { background: #f5f5f5; }
 .be-mode .sec-lbl { font-family: var(--font-m); font-size: 1.4rem; text-transform: uppercase; letter-spacing: .1em; }
 .be-mode .sec-lbl::before { content: '// '; }
+.be-mode .sec-lbl::after { border-top: 1px dashed #333; background: transparent; height: 0; }
 
-.be-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-  gap: 0;
-}
-.bc {
-  border: 1px solid #2a2a2a;
-  border-radius: 0;
-  padding: 1.4rem;
-  font-family: var(--font-m);
-  background: transparent;
-  transition: background .15s;
-  margin: -1px 0 0 -1px;
-}
+.be-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px,1fr)); gap: 0; }
+.bc { border: 1px solid #2a2a2a; padding: 1.4rem; font-family: var(--font-m); background: transparent; transition: background .15s; margin: -1px 0 0 -1px; }
 [data-theme="light"] .bc { border-color: #ccc; }
 .bc:hover { background: var(--bg2); }
 .bc-num   { font-size: 10px; color: #444; margin-bottom: 5px; letter-spacing: .06em; }

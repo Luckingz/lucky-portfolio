@@ -1,51 +1,31 @@
-/* ═══════════════════════════════════════════════════════
-   src/styles/fullstack.css
-   ══════════════════════════════════════════════════════ */
+/* src/styles/fullstack.css */
 @keyframes rbow { to { background-position: 200% center; } }
 
 .mbtn.fs.on {
   background: linear-gradient(90deg,#ff6b6b,#ffd93d,#6bcb77,#4d96ff,#ff6b6b);
-  background-size: 200%;
-  color: #000;
-  font-weight: 700;
+  background-size: 200%; color: #000; font-weight: 700;
   animation: rbow 2s linear infinite;
 }
 
-/* Hero text effects in FS mode */
-.fs-mode .hw-line  { animation: hshift 2s linear infinite; }
-@keyframes hshift  { 0%{filter:hue-rotate(0)} 100%{filter:hue-rotate(360deg)} }
+.fs-mode .hw-line { animation: hshift 2s linear infinite; }
+@keyframes hshift { 0%{filter:hue-rotate(0)} 100%{filter:hue-rotate(360deg)} }
+
 .fs-mode .name-line em {
   background: linear-gradient(90deg,#ff6b6b,#ffd93d,#6bcb77,#4d96ff,#ff6b6b);
-  background-size: 200%;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  background-size: 200%; -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent; background-clip: text;
   animation: rbow 2s linear infinite;
 }
 .fs-mode .sec-lbl {
   background: linear-gradient(90deg,#ff6b6b,#ffd93d,#6bcb77,#4d96ff,#ff6b6b);
-  background-size: 200%;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  background-size: 200%; -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent; background-clip: text;
   animation: rbow 3s linear infinite;
 }
 
-.fs-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
-  gap: 1.2rem;
-}
-.fsc {
-  background: var(--bg2);
-  border: 1px solid var(--border);
-  border-radius: 12px;
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
-}
+.fs-grid { display: grid; grid-template-columns: repeat(auto-fill,minmax(340px,1fr)); gap: 1.2rem; }
 
-/* Flying + colour borders by child order */
+.fsc { background: var(--bg2); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; display: flex; flex-direction: column; }
 .fsc:nth-child(1){border-color:rgba(200,240,60,.35); animation:fly1 7s ease-in-out infinite}
 .fsc:nth-child(2){border-color:rgba(124,106,244,.35);animation:fly2 5.5s ease-in-out 1s infinite}
 .fsc:nth-child(3){border-color:rgba(78,205,196,.35); animation:fly3 6s ease-in-out .5s infinite}
@@ -58,11 +38,9 @@
 @keyframes fly2{0%,100%{transform:translateX(0) rotate(0)}30%{transform:translateX(8px) rotate(.6deg)}65%{transform:translateX(-5px) rotate(-.4deg)}}
 @keyframes fly3{0%,100%{transform:translate(0,0)}40%{transform:translate(5px,-8px)}75%{transform:translate(-3px,4px)}}
 @keyframes fly4{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
+@media(max-width:768px){.fsc{animation:none!important}.fs-grid{grid-template-columns:1fr}}
 
-/* Disable flying on mobile */
-@media (max-width: 768px) { .fsc { animation: none !important; } .fs-grid { grid-template-columns: 1fr; } }
-
-.fsc-hd    { padding: 1rem 1.2rem; border-bottom: 1px solid var(--border); }
+.fsc-hd { padding: 1rem 1.2rem; border-bottom: 1px solid var(--border); }
 .fsc-title { font-family: var(--font-d); font-size: 1.3rem; color: var(--txt); letter-spacing: .03em; }
 .fsc-role  { font-size: 11px; font-family: var(--font-m); color: var(--txt2); margin-top: 2px; }
 .fsc-desc  { font-size: 12px; color: var(--txt2); line-height: 1.6; margin-top: 6px; }
@@ -71,25 +49,14 @@
 
 .ez { background: #000; position: relative; padding-top: 56.25%; }
 .ez iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: none; }
-.ez-ph {
-  position: absolute; inset: 0;
-  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px;
-  background: var(--bg3); cursor: pointer; transition: background .2s;
-}
+.ez-ph { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px; background: var(--bg3); cursor: pointer; transition: background .2s; }
 .ez-ph:hover { background: var(--bg2); }
-.play-c {
-  width: 52px; height: 52px; border-radius: 50%;
-  background: var(--acc); display: flex; align-items: center; justify-content: center;
-  font-size: 18px; color: #000; border: none; cursor: pointer; transition: transform .2s;
-}
+.play-c { width: 52px; height: 52px; border-radius: 50%; background: var(--acc); display: flex; align-items: center; justify-content: center; font-size: 18px; color: #000; border: none; cursor: pointer; transition: transform .2s; }
 .play-c:hover { transform: scale(1.1); }
-.ez-lbl  { font-family: var(--font-m); font-size: 10px; color: var(--txt3); }
-.fsc-ft  { padding: .7rem 1.2rem; display: flex; gap: 7px; flex-wrap: wrap; }
-.fsl {
-  font-family: var(--font-m); font-size: 10px; padding: 5px 12px; border-radius: 5px;
-  transition: all .2s; border: 1px solid var(--border); color: var(--txt2);
-  text-decoration: none; display: inline-block; cursor: pointer;
-}
+.ez-lbl { font-family: var(--font-m); font-size: 10px; color: var(--txt3); }
+
+.fsc-ft { padding: .7rem 1.2rem; display: flex; gap: 7px; flex-wrap: wrap; }
+.fsl { font-family: var(--font-m); font-size: 10px; padding: 5px 12px; border-radius: 5px; transition: all .2s; border: 1px solid var(--border); color: var(--txt2); text-decoration: none; display: inline-block; cursor: pointer; }
 .fsl.p { background: var(--acc); border-color: var(--acc); color: #000; font-weight: 700; }
 .fsl.p:hover { opacity: .88; }
 .fsl:hover:not(.p) { border-color: var(--acc); color: var(--acc); }

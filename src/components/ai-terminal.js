@@ -1,115 +1,95 @@
 // src/components/ai-terminal.js
-// Live AI terminal — swap GROQ_KEY with your real key.
-// Model: llama-3.1-8b-instant (free tier, very fast)
+// All suggestion answers are prefilled — no API calls needed.
+// Typing "send" redirects user to the Chat with Lucky modal.
 'use strict';
 
-// ── SET YOUR GROQ KEY HERE (or via env in your backend proxy) ──
-// For local dev: paste your key below.
-// For production (Vercel/Netlify): use a serverless function proxy
-// and change the fetch URL to '/api/chat'. Never expose keys in prod.
-window.GROQ_KEY = 'YOUR_GROQ_KEY_HERE';
+const PREFILLED = {
+  python:
+`Python is Lucky's most-used language. Five projects run on it:
 
-let _atHistory = [];
+  1. YoTouch        — ArcFace + OpenCV biometric engine
+  2. EnergizeAI     — FastAPI backend for the solar PV AI tool
+  3. GPMP           — scikit-learn ML pipeline for gas maintenance
+  4. StudyinNaija   — NLP question generation engine
+  5. TrafficMonitor — YOLO + OpenCV vehicle detection
 
-function _buildSystemPrompt() {
-  const P = window.PERSONAL || {};
-  const projects = window.PROJECTS || [];
+Python handles all heavy AI/ML workloads across the stack.`,
 
-  const projectLines = projects.map((p, i) => {
-    const links = [p.repo && `repo:${p.repo}`, p.live && `live:${p.live}`].filter(Boolean).join(' | ');
-    return `${i+1}. ${p.title} — ${p.desc} Stack: ${p.tags.join(', ')}. Role: ${p.role}. ${links}`;
-  }).join('\n');
+  energize:
+`EnergizeAI is Lucky's award-winning project.
 
-  return `You are the AI assistant embedded in Lucky Ajidoku's portfolio website.
-Answer questions about Lucky ONLY. Refuse anything unrelated politely.
+It automates solar PV system blueprint design for engineers
+and field technicians using AI. Instead of hours of manual
+calculation, the tool generates a complete system layout
+in minutes.
 
-ABOUT LUCKY:
-- Full name: Lucky Ajidoku | Alias: LuckyME!
-- Role: AI Engineer & Software Developer
-- Location: Abuja, Nigeria
-- Education: ${P.education || 'B.Eng. Computer Engineering, BUK 2024'}
-- GitHub: github.com/Luckingz | LinkedIn: in/lucky-ajidoku | CV: luckyajidoku.cv
+Stack: Flutter (mobile), Dart, Python, FastAPI
+Role:  Lead AI Engineer
 
-TECH STACK:
-  Languages : Python, TypeScript, Go (learning), Dart, JavaScript, C
-  AI/ML     : TensorFlow, PyTorch, ArcFace, OpenCV, NLP, YOLO, scikit-learn
-  Web/Mobile: React, Node.js, FastAPI, Flutter, PostgreSQL, Docker, Cardano, Streamlit
+Won Best Project (Nationwide) at the 3MTT June Knowledge
+Showcase 2025, competing against projects from across Nigeria.`,
 
-AWARDS:
-- Best Project (Nationwide) — 3MTT June Knowledge Showcase 2025 (EnergizeAI)
+  awards:
+`Lucky's national award:
 
-CERTIFICATIONS:
-- AI and Machine Learning — 3MTT / NITDA
-- Project Management — Skill Development Council, Canada
-- Train-The-Trainer — Data Science Nigeria x Microsoft
-- AI for Energy Hackathon — DSN x NNPC
+  Best Project (Nationwide)
+  3MTT June Knowledge Showcase 2025
+  Project: EnergizeAI
 
-PROJECTS (${projects.length}):
-${projectLines}
+Certifications:
+  - AI & Machine Learning — 3MTT / NITDA
+  - Project Management   — SDC Canada
+  - Train-The-Trainer    — DSN x Microsoft
+  - AI for Energy Hackathon — DSN x NNPC`,
 
-PROJECT CROSS-REFERENCES:
-- Python projects: YoTouch, EnergizeAI, GPMP, StudyinNaija, TrafficMonitor
-- Blockchain: YoTouch (Cardano)
-- Computer Vision: YoTouch (ArcFace), TrafficMonitor (YOLO/OpenCV)
-- Flutter: EnergizeAI
-- Award-winning: EnergizeAI
-- Hackathon: ComplyNG
+  blockchain:
+`That would be YoTouch.
 
-RULES:
-- Under 120 words per response. Concise, terminal-style.
-- If asked about a project, mention its stack, role, link.
-- If asked which projects use a tech, list them clearly.
-- If the question is not about Lucky, say: "I only know about Lucky ME! Ask me about his projects, skills, or background."
-- Never fabricate.`;
-}
+YoTouch uses the Cardano blockchain for decentralised
+identity verification. Biometric data (ArcFace face
+embeddings + liveness scores) is processed off-chain.
+Only a tamper-proof hash is stored on-chain, keeping
+the system NDPR and GDPR compliant.
 
-async function sendAI() {
-  const inp = document.getElementById('atIn');
-  const q   = (inp.value || '').trim();
-  if (!q) return;
-  inp.value = '';
+Stack: Python, ArcFace, OpenCV, Cardano, Node.js, PostgreSQL
+Role:  AI Engineer`,
 
-  _appendUser(q);
-  _appendThinking();
+  gpmp:
+`GPMP stands for Gas Prediction & Maintenance Prediction.
 
-  try {
-    const messages = [..._atHistory, { role: 'user', content: q }];
+It's an ML system built to predict equipment failures in
+industrial gas systems before they happen, reducing
+downtime and maintenance costs.
 
-    // ── SWAP URL TO '/api/chat' WHEN USING A BACKEND PROXY ──
-    const res = await fetch('https://api.groq.com/openai/v1/chat/completions', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${window.GROQ_KEY}`,
-      },
-      body: JSON.stringify({
-        model: 'llama-3.1-8b-instant',
-        max_tokens: 300,
-        messages: [
-          { role: 'system', content: _buildSystemPrompt() },
-          ...messages,
-        ],
-      }),
-    });
+Deployed as a live Streamlit app with interactive dashboards.
 
-    const data  = await res.json();
-    const reply = data.choices?.[0]?.message?.content || 'Something went wrong. Try again!';
-    _removeThinking();
-    _appendAI(reply);
+Stack: Python, scikit-learn, Pandas, Streamlit
+Role:  AI/ML Engineer`,
 
-    _atHistory.push({ role: 'user', content: q }, { role: 'assistant', content: reply });
-    if (_atHistory.length > 20) _atHistory = _atHistory.slice(-20);
+  vision:
+`Two projects use computer vision:
 
-  } catch (err) {
-    _removeThinking();
-    _appendAI("Can't connect right now. Try the Chat with Lucky button to reach Lucky directly!");
+  1. YoTouch
+     ArcFace facial recognition + OpenCV for real-time
+     liveness detection (blink, head-turn challenges).
+
+  2. TrafficMonitor
+     YOLO object detection + OpenCV tracking for vehicle
+     classification and counting from live video feeds.
+     Deployed as a Google Colab notebook.`,
+};
+
+function _typer(el, txt, speed, cb) {
+  let i = 0;
+  function go() {
+    if (i < txt.length) { el.textContent += txt[i++]; setTimeout(go, speed); }
+    else if (cb) cb();
   }
+  go();
 }
 
-function askTerm(q) {
-  const inp = document.getElementById('atIn');
-  if (inp) inp.value = q;
-  sendAI();
+function _esc(s) {
+  return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
 }
 
 function _appendUser(q) {
@@ -122,39 +102,56 @@ function _appendUser(q) {
   out.scrollTop = out.scrollHeight;
 }
 
-function _appendAI(txt) {
+function _appendTyped(txt, cb) {
   const out = document.getElementById('atOut');
   if (!out) return;
   const d = document.createElement('div');
   d.className = 'at-msg-a';
-  d.innerHTML = `<span class="at-ps">Lucky~$</span>${_esc(txt).replace(/\n/g, '<br>')}`;
+  const ps  = document.createElement('span');
+  ps.className = 'at-ps'; ps.textContent = 'Lucky~$ ';
+  const body = document.createElement('span');
+  const cur  = document.createElement('span');
+  cur.className = 'wbcur';
+  d.appendChild(ps); d.appendChild(body); d.appendChild(cur);
   out.appendChild(d);
   out.scrollTop = out.scrollHeight;
+  _typer(body, txt, 11, () => {
+    cur.remove();
+    out.scrollTop = out.scrollHeight;
+    if (cb) cb();
+  });
 }
 
-function _appendThinking() {
-  const out = document.getElementById('atOut');
-  if (!out) return;
-  const d = document.createElement('div');
-  d.id = 'at-thinking';
-  d.className = 'at-thinking';
-  d.textContent = 'thinking...';
-  out.appendChild(d);
-  out.scrollTop = out.scrollHeight;
+// Called when user clicks a suggestion chip
+function answerQ(el, key) {
+  el.classList.add('used');
+  const q   = el.textContent;
+  const ans = PREFILLED[key] || 'I only know about Lucky ME! Ask about his projects, skills, or background.';
+  _appendUser(q);
+  _appendTyped(ans, null);
 }
 
-function _removeThinking() {
-  const t = document.getElementById('at-thinking');
-  if (t) t.remove();
+// Called when user presses SEND or hits Enter in the text field
+function sendAI() {
+  const inp = document.getElementById('atIn');
+  const q   = (inp ? inp.value : '').trim();
+  if (!q) return;
+  if (inp) inp.value = '';
+
+  _appendUser(q);
+
+  const msg = 'Why waste AI tokens when you could chat with the man himself?';
+  _appendTyped(msg, () => {
+    const out = document.getElementById('atOut');
+    if (!out) return;
+    const nudge = document.createElement('div');
+    nudge.className = 'at-redirect-nudge';
+    nudge.innerHTML = `Talk to Lucky directly &rarr;<br/>
+      <button class="at-redirect-btn" onclick="openChat()">&#9654; Chat with Lucky</button>`;
+    out.appendChild(nudge);
+    out.scrollTop = out.scrollHeight;
+  });
 }
 
-function _esc(s) {
-  return String(s)
-    .replace(/&/g,'&amp;')
-    .replace(/</g,'&lt;')
-    .replace(/>/g,'&gt;')
-    .replace(/"/g,'&quot;');
-}
-
+window.answerQ = answerQ;
 window.sendAI  = sendAI;
-window.askTerm = askTerm;
