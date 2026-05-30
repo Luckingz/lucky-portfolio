@@ -14,7 +14,10 @@ const WHOAMI_LINES = [
   { t: 'chips', items: ['Python','TypeScript','Go','Dart','JavaScript','C'], cls: 'lang' },
   { t: 'chips', items: ['TensorFlow','PyTorch','ArcFace','OpenCV','NLP','YOLO'], cls: 'ai' },
   { t: 'chips', items: ['React','Node.js','FastAPI','Flutter','PostgreSQL','Docker','Cardano','Streamlit'] },
-  { t: 'award' },
+  { t: 'sec', txt: 'awards' },
+  { t: 'award', txt: 'Best Project (Nationwide) — 3MTT June Knowledge Showcase 2025' },
+  { t: 'award', txt: 'Presenter — African Innovative Gas Summit, 2025' },
+
   { t: 'ctas' },
 ];
 
@@ -110,7 +113,7 @@ function _renderLine(line, cb) {
       const cu = _makeCursor();
       row.appendChild(a); row.appendChild(cu);
       body.appendChild(row);
-      _typer(a, 'Best Project (Nationwide) — 3MTT June Knowledge Showcase 2025', 18, () => {
+      _typer(a, line.txt || '', 18, () => {
         cu.remove(); body.scrollTop = body.scrollHeight; cb && cb();
       });
       break;

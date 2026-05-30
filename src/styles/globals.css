@@ -11,6 +11,7 @@ button { font-family: inherit; cursor: pointer; }
   --txt: #eeeef5; --txt2: #8888a8; --txt3: #44445a;
   --acc: #c8f03c; --acc2: #7c6af4; --acc3: #4ecdc4;
   --red: #ff6b6b; --border: #22223a;
+  --lbl: #a78bfa;
   --font-d: 'Bebas Neue', sans-serif;
   --font-m: 'IBM Plex Mono', monospace;
   --font-b: 'Instrument Sans', sans-serif;
@@ -21,6 +22,7 @@ button { font-family: inherit; cursor: pointer; }
   --bg: #f2f2e8; --bg2: #e8e8dc; --bg3: #ddddd0;
   --txt: #0a0a10; --txt2: #5a5a70; --txt3: #aaaabc;
   --border: #d0d0c0; --acc: #3a7c00;
+  --lbl: #5b21b6;
 }
 
 body {

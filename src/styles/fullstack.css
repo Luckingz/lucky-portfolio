@@ -60,3 +60,11 @@
 .fsl.p { background: var(--acc); border-color: var(--acc); color: #000; font-weight: 700; }
 .fsl.p:hover { opacity: .88; }
 .fsl:hover:not(.p) { border-color: var(--acc); color: var(--acc); }
+
+/* ── THEME-AWARE MATRIX BACKGROUND ──
+   The canvas JS reads data-theme and adjusts trail + char colours.
+   The hero itself also needs the matching bg so it doesn't show
+   the wrong base colour peeking through on light mode. */
+.fs-mode .hero {
+  background: var(--bg);  /* dark: #06060a | light: #f2f2e8 */
+}
