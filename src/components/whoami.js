@@ -16,7 +16,7 @@ const WHOAMI_LINES = [
   { t: 'chips', items: ['React','Node.js','FastAPI','Flutter','PostgreSQL','Docker','Cardano','Streamlit'] },
   { t: 'sec', txt: 'awards' },
   { t: 'award', txt: 'Best Project (Nationwide) — 3MTT June Knowledge Showcase 2025' },
-  { t: 'award', txt: 'Presenter — African Innovative Gas Summit, 2025' },
+  { t: 'award', txt: 'Presenter at the African Gas Innovative Summit (AGIS), 2025' },
 
   { t: 'ctas' },
 ];
