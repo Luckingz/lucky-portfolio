@@ -127,6 +127,7 @@ function _renderLine(line, cb) {
         <a href="mailto:hello@luckyajidoku.cv" target="_blank" class="wb-cta">E-Mail</a>
         <a href="https://github.com/Luckingz" target="_blank" class="wb-cta">GitHub</a>
         <a href="https://www.linkedin.com/in/lucky-ajidoku/" target="_blank" class="wb-cta">LinkedIn</a>
+        <a href="https://blog.luckyajidoku.cv/" target="_blank" class="wb-cta">Blog</a>
       `;
       body.appendChild(ctas);
       body.scrollTop = body.scrollHeight;
