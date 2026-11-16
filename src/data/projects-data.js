@@ -14,7 +14,8 @@ window.PROJECTS = [
 
 window.PERSONAL = {
   name:'Lucky Ajidoku', alias:'LuckyME!',
-  title:'AI, ML and Automation Engineer · Software Developer', location:'Lagos, Nigeria',
+  title:'AI, ML and Automation Engineer · Software Developer', 
+  location:'Lagos, Nigeria',
   education:'B.Eng. Computer Engineering, Bayero University Kano (BUK), 2024',
   professional_certification: 'BeingCert Certified Python Developer (BCPD)',
   other_certification: 'Universal AI Certification - MIT Open Learning',
