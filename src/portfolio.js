@@ -15,8 +15,8 @@ function _applyTheme() {
   const label = document.getElementById('tLbl');
   if (icon)  icon.textContent  = _isDark ? '\u{1F319}' : '\u2600\uFE0F';
   // Night Walker / Sun Summoner per feedback
-  if (label) label.textContent = _isDark ? 'Night Walker' : 'Sun Summoner';
-  localStorage.setItem('lme-theme', _isDark ? 'dark' : 'light');
+  if (label) label.textContent = _isDark ? 'Sun Summoner' : 'Night Walker';
+  localStorage.setItem('lme-theme', _isDark ? 'light' : 'dark');
 }
 function toggleTheme() { _isDark = !_isDark; _applyTheme(); }
 window.toggleTheme = toggleTheme;
