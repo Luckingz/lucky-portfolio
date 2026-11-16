@@ -7,10 +7,11 @@ const PREFILLED = {
   python:
 `Python is Lucky's most-used language. Here are some projects that run on it:
 
-  1. EnergizeAI     — FastAPI backend for the solar PV AI tool
-  2. GPMP           — scikit-learn ML pipeline for gas maintenance
-  3. YoTouch        — ArcFace + OpenCV biometric engine
-  4. StudyinNaija   — NLP question generation engine
+  1. Alpha-SCADA    — Tkinter desktop app with SCADA-like interface for oil well inspection
+  2. EnergizeAI     — FastAPI backend for the solar PV AI tool
+  3. GPMP           — scikit-learn ML pipeline for gas maintenance
+  4. YoTouch        — ArcFace + OpenCV biometric engine
+  5. StudyinNaija   — NLP question generation engine
   6. TrafficMonitor — YOLO + OpenCV vehicle detection
 
 Python handles all heavy AI/ML workloads across the stack.`,
@@ -40,6 +41,8 @@ Showcase 2025, competing against projects from across Nigeria.`,
   Project: GPMP
 
 Certifications:
+  - Universal AI Certification — MIT Open Learning, US
+  - BeingCert Certified Python Developer (BCPD) — BeingCert, US
   - AI & Machine Learning — 3MTT / NITDA
   - Project Management   — Skill Development Council, Canada
   - Train-The-Trainer    — DSN x Microsoft
