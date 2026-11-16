@@ -13,7 +13,7 @@ function _applyTheme() {
   document.documentElement.setAttribute('data-theme', _isDark ? 'dark' : 'light');
   const icon  = document.getElementById('tIcon');
   const label = document.getElementById('tLbl');
-  if (icon)  icon.textContent  = _isDark ? '\u{1F319}' : '\u2600\uFE0F';
+  if (icon)  icon.textContent  = _isDark ? '\u2600\uFE0F' : '\u{1F319}';
   // Night Walker / Sun Summoner per feedback
   if (label) label.textContent = _isDark ? 'Sun Summoner' : 'Night Walker';
   localStorage.setItem('lme-theme', _isDark ? 'light' : 'dark');
